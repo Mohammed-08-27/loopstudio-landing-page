@@ -1,0 +1,580 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Josefin+Sans:wght@300;400;500;600;700&display=swap');
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-weight: 400;
+}
+
+/* make images easier to work with */
+img,
+picutre {
+    max-width: 100%;
+    display: block;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* utilities */
+.flex {
+    display: flex;
+    gap: 1rem;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-black {
+    color: black;
+}
+
+.text-gray {
+    color: hsl(0, 0%, 55%);
+}
+
+.text-dark-gray {
+    color: hsl(0, 0%, 41%);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    /* added line */
+    border: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Alata', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 1.25px;
+    overflow-x: hidden;
+    margin-inline: auto;
+}
+
+
+header {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(./images/mobile/image-hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-inline: auto;
+}
+
+.container {
+    width: 90%;
+    margin-inline: auto;
+    padding-inline: 1rem;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    margin-inline: auto;
+}
+
+.logo {
+    padding-top: 1rem;
+}
+
+.mobile-nav-toggle {
+    display: block;
+    position: absolute;
+    z-index: 2000;
+    right: calc(2rem + 1rem);
+    top: 2rem;
+    background: transparent;
+    background-repeat: no-repeat;
+    background-image: url(./images/icon-hamburger.svg);
+    background-position: center;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    border: 0;
+    cursor: pointer;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url(./images/icon-close.svg);
+}
+
+.primary-navigation {
+    display: flex;
+    position: absolute;
+    z-index: 1000;
+    inset: 0 0 0 30%;
+    padding: min(20rem, 15vh) 0;
+    margin: 0;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 500ms ease-in-out;
+    background-color: black;
+}
+
+.primary-navigation[data-visible="true"] {
+    transform: translateX(0);
+}
+
+.primary-navigation .nav {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+.primary-navigation .nav li {
+    position: relative;
+    padding-bottom: 1rem;
+    overflow-x: hidden;
+
+}
+
+
+.primary-navigation .nav li::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: hsl(0, 0%, 55%);
+    transform: translateX(-100%);
+    transition: .3s;
+}
+
+.primary-navigation .nav li:hover::after {
+    transform: translateX(0%);
+}
+
+.primary-navigation .nav li a {
+    color: white;
+    padding: 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color .3s;
+}
+
+.primary-navigation .nav li:hover a {
+    color: hsl(0, 0%, 55%);
+}
+
+@media (min-width:35rem) {
+
+    .primary-navigation .nav li a {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width:35rem) {
+
+    .primary-navigation .nav li a {
+        font-size: 1.3rem;
+    }
+}
+
+.header-title {
+    max-width: 22rem;
+    border: 2px solid white;
+    margin-top: calc(100vh / 4);
+    margin-inline: auto;
+}
+
+.header-title .title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: calc(2.5rem + 1vw);
+    font-weight: 300;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1.7px;
+    line-height: 1.1;
+    padding: 2rem;
+    margin-inline: auto;
+}
+
+/* body styling */
+.main {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    margin: 2rem 1rem;
+}
+
+/* about section */
+section.about {
+    display: grid;
+    gap: 1rem;
+    text-align: center;
+}
+
+section.about .about-text .about-title {
+    text-transform: uppercase;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.2;
+    color: black;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+section.about .about-text .about-description {
+    font-size: 1rem;
+    color: hsl(0, 0%, 55%);
+    padding-inline: 1rem;
+}
+
+section.work {
+    display: flex;
+    gap: 1rem 0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+section.work h3 {
+    width: 50%;
+    text-transform: uppercase;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
+}
+
+section.work .a-work {
+    margin-bottom: 1rem;
+    order: 2;
+    width: 50%;
+}
+
+section.work .a-work a {
+    color: black;
+    letter-spacing: 1.75px;
+    padding: .5rem 2rem;
+    border: 1px solid black;
+    transition: .3s;
+}
+
+section.work .our-work {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+}
+
+section.work .our-work .work-part {
+    position: relative;
+    margin-bottom: 2rem;
+    transition: .4s;
+    cursor: pointer;
+}
+
+section.work .our-work .work-part:hover {
+    transform: scale(1.1);
+}
+
+section.work .our-work .work-part p {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: calc(.8rem + 1vw);
+    letter-spacing: 2px;
+    width: 26%;
+}
+
+footer {
+    width: 100vw;
+    background-color: black;
+    padding: 1.3rem 0;
+}
+
+footer .footer-rst {
+    margin-inline: auto;
+}
+
+footer .footer-rst,
+footer .bottom {
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .bottom a {
+    transition: color .3s;
+}
+
+footer .bottom a:hover {
+    color: hsl(0, 0%, 55%);
+}
+
+footer .bottom {
+    margin-bottom: 1rem;
+}
+
+footer .logo-nd {
+    padding: 1rem;
+    padding-left: 0;
+}
+
+footer .social {
+    margin: 1.1rem 0 1.4rem;
+}
+
+footer .social img {
+    cursor: pointer;
+}
+
+footer .social img:not(:first-child) {
+    margin-left: 1rem;
+}
+
+footer .footer-nd {
+    flex-direction: column;
+    align-items: center;
+    margin-inline: auto;
+}
+
+
+/*  media tablet*/
+@media (min-width:35rem) {
+    body {
+        letter-spacing: 1.5px;
+    }
+
+    .header-title {
+        max-width: 35rem;
+        margin-left: 5%;
+    }
+
+    section.work {
+        width: 80%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        margin-inline: auto;
+    }
+
+    section.work h3 {
+        text-align: left;
+    }
+
+    section.work .a-work {
+        order: initial;
+        text-align: right;
+    }
+
+    section.work .our-work {
+        column-gap: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(calc(100% / 5), 1fr));
+    }
+
+    section.work .work-part img {
+        width: 100%;
+    }
+
+
+
+    /* foooter styling */
+    footer .footer-rst {
+        max-width: 50%;
+        align-items: flex-start;
+        margin-left: 0;
+    }
+
+    footer .bottom {
+        flex-direction: row;
+    }
+
+    footer .footer-nd {
+        max-width: 50%;
+        align-items: flex-end;
+        margin-right: 0;
+    }
+
+
+}
+
+/* desktop */
+@media (min-width:45rem) {
+    body {
+        letter-spacing: 1.75px;
+    }
+
+    header {
+        background-image: url(./images/desktop/image-hero.jpg);
+    }
+
+    .container {
+        width: 80%;
+    }
+
+    .primary-navigation {
+        display: flex;
+        height: auto;
+        position: initial;
+        padding: initial;
+        transform: none;
+        background-color: transparent;
+        padding-top: 2rem;
+    }
+
+    .mobile-nav-toggle {
+        display: none;
+    }
+
+    .primary-navigation .nav {
+        gap: 1rem;
+        flex-direction: row;
+    }
+
+    .primary-navigation .nav li:not(:first-child) {
+        margin-left: 1rem;
+    }
+
+    .primary-navigation .nav li a {
+        font-size: 1.1rem;
+    }
+
+    .header-title {
+        width: 35rem;
+        margin-left: 10%;
+    }
+
+    /*  */
+    section.about {
+        width: 80%;
+        min-height: 700px;
+        margin: 2rem auto;
+        position: relative;
+
+    }
+
+    section.about .picture-about {
+        position: absolute;
+        top: 10px;
+        left: 10%;
+
+    }
+
+    section.about .picture-about img {
+        width: 40rem;
+    }
+
+    section.about .about-text {
+        position: absolute;
+        right: 10%;
+        top: 250px;
+        width: 35rem;
+        padding: 2rem 1rem 2rem 4rem;
+        text-align: left;
+        background-color: white;
+    }
+
+    section.about .about-text .about-title {
+        text-transform: uppercase;
+        font-family: 'Alata';
+        line-height: 1.2;
+        color: black;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        padding-inline: 1rem;
+    }
+
+    section.work {
+        text-align: left;
+    }
+
+
+}
